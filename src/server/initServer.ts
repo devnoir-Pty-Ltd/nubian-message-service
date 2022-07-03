@@ -7,7 +7,7 @@ import * as cors from 'cors';
 import { log } from '@root/utils';
 
 const initServer: () => Promise<void> = async () => {
-	const PORT = <number>config.get('PORT') || 7001;
+	const PORT = <number>config.get('PORT') || 7102;
 	const app: Express = express();
 
 	const loggerStream = {
