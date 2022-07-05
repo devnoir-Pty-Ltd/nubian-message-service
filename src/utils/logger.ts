@@ -16,7 +16,7 @@ const colors: { [key: string]: string } = {
 
 const logger: winston.Logger = createLogger({
 	levels: config.syslog.levels,
-	defaultMeta: { component: 'nunian-api-gateway' },
+	defaultMeta: { component: 'nunian-message-service' },
 	exitOnError: false,
 	level: 'info',
 	format: combine(
