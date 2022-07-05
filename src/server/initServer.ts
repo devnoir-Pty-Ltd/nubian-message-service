@@ -1,8 +1,8 @@
-import * as config from 'config';
-import * as morgan from 'morgan';
-import * as express from 'express';
+import config from 'config';
+import morgan from 'morgan';
+import express from 'express';
 import { Express } from 'express';
-import * as cors from 'cors';
+import cors from 'cors';
 
 import { log } from '@root/utils';
 
