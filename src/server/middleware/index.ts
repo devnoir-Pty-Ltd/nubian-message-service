@@ -23,7 +23,7 @@ const jwtVerify = ({ token, secret, req, next }) => {
 	JWT.verify(token, secret, (err: Error, payload: any) => {
 		if (err) {
 			const message = err.name === 'JsonWebTokenError' ? 'Unauthorized' : err.message;
-			next(new createError.UnauthorizedError(message));
+			next(new createError.Unauthorized(message));
 		}
 		req.payload = payload;
 		next();
