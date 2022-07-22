@@ -15,11 +15,6 @@ export const verifyAccessToken: (req: Request | any, _res: Response, next: NextF
 	const token = bearerToken[1];
 	if (!token) next(new createError.InternalServerError());
 	const secret = SECRET;
-	jwtVerify;
-	({ token, secret, req, next });
-};
-
-const jwtVerify = ({ token, secret, req, next }) => {
 	JWT.verify(token, secret, (err: Error, payload: any) => {
 		if (err) {
 			const message = err.name === 'JsonWebTokenError' ? 'Unauthorized' : err.message;

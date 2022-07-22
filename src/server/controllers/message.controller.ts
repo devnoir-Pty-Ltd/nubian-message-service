@@ -26,7 +26,7 @@ const getMessages: (req: Request, res: Response, next: NextFunction) => Promise<
 		next(error);
 	}
 };
-const messageSend: (req: Request, res: Response, next: NextFunction) => Promise<any> = async (req, res, next) => {
+const sendMessage: (req: Request, res: Response, next: NextFunction) => Promise<any> = async (req, res, next) => {
 	try {
 		const value: TMessage = await messageValidator.validateAsync(req.body);
 		const newMsg: TMessage | unknown = await Message.create({ ...value });
@@ -44,7 +44,6 @@ const messageSend: (req: Request, res: Response, next: NextFunction) => Promise<
 
 const getMessage: (req: Request, res: Response, next: NextFunction) => Promise<any> = async (req, res, next) => {
 	const { id: _id } = req.params;
-
 	try {
 		if (!mongoose.Types.ObjectId.isValid(_id)) next(new createError.NotFound());
 		const post = await Message.findById(_id);
@@ -87,7 +86,7 @@ const updateMessage: (req: Request, res: Response, next: NextFunction) => Promis
 };
 
 export default {
-	messageSend,
+	sendMessage,
 	updateMessage,
 	getMessage,
 	getMessages,
