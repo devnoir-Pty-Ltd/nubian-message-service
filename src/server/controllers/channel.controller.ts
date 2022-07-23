@@ -5,7 +5,6 @@ import { Request, Response, NextFunction } from 'express';
 
 import { log } from '@root/utils';
 import Channel from '@root/db/models/channel';
-import Message from '@root/db/models/message';
 
 export type TChannel = {
 	accountId: string;
@@ -13,8 +12,9 @@ export type TChannel = {
 };
 
 const getChannels: (req: Request, res: Response, next: NextFunction) => Promise<any> = async (req, res, next) => {
+	const { accountId } = req.body;
 	try {
-		const channels: TChannel[] = await Channel.find();
+		const channels: TChannel[] = await Channel.find({ accountId: accountId });
 
 		res.status(200).json(channels);
 	} catch (error) {
@@ -35,19 +35,6 @@ const createChannel: (req: Request, res: Response, next: NextFunction) => Promis
 	} catch (error) {
 		if (error.isJoi) error.status = 422;
 		log.error('[message controller ] send message', error);
-		next(error);
-	}
-};
-
-const getMessage: (req: Request, res: Response, next: NextFunction) => Promise<any> = async (req, res, next) => {
-	const { id: _id } = req.params;
-	try {
-		if (!mongoose.Types.ObjectId.isValid(_id)) next(new createError.NotFound());
-		const post = await Message.findById(_id);
-		res.status(200).json(post);
-	} catch (error) {
-		res.status(404).json({ message: error.message });
-		log.error('[message controller ] get Message', error);
 		next(error);
 	}
 };
@@ -83,7 +70,6 @@ const updateChannel: (req: Request, res: Response, next: NextFunction) => Promis
 export default {
 	createChannel,
 	updateChannel,
-	getMessage,
 	getChannels,
 	deleteChannel,
 };

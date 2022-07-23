@@ -1,11 +1,9 @@
 import { model, Schema } from 'mongoose';
-import Message from './message';
 
 const ChannelSchema = new Schema(
 	{
 		accountId: { type: String, required: true },
 		title: { type: String, required: true },
-		messages: [Message],
 	},
 	{ timestamps: true },
 );
