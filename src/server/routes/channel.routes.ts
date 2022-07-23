@@ -5,7 +5,6 @@ import { channelController } from '@root/server/controllers';
 const channelRoutes: Router = Router();
 channelRoutes.post('/', middleware.verifyAccessToken, channelController.createChannel);
 channelRoutes.get('/', middleware.verifyAccessToken, channelController.getChannels);
-channelRoutes.get('/:id', middleware.verifyAccessToken, channelController.getMessage);
 channelRoutes.patch('/:id', middleware.verifyAccessToken, channelController.updateChannel);
 channelRoutes.delete('/:id', middleware.verifyAccessToken, channelController.deleteChannel);
 
