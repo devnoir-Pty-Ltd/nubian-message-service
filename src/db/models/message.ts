@@ -3,6 +3,7 @@ import { model, Schema } from 'mongoose';
 
 const MessageSchema = new Schema(
 	{
+		channelId: { type: String, required: false },
 		senderId: { type: String, required: true },
 		senderType: { type: String, required: true },
 		receiverType: { type: String, required: true },

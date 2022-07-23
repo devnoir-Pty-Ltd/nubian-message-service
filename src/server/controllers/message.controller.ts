@@ -7,6 +7,7 @@ import { log } from '@root/utils';
 import Message from '@root/db/models/message';
 
 export type TMessage = {
+	channelId?: string;
 	senderId: string;
 	senderType: string;
 	receiverType: string;
