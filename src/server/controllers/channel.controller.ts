@@ -9,6 +9,7 @@ import Channel from '@root/db/models/channel';
 export type TChannel = {
 	accountId: string;
 	title: string;
+	imageSrc: string;
 };
 
 const getChannels: (req: Request, res: Response, next: NextFunction) => Promise<any> = async (req, res, next) => {
