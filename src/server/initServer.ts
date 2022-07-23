@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import { log } from '@root/utils';
 import msgRouter from '@root/server/routes/message.routes';
+import channelRoutes from '@root/server/routes/channel.routes';
 
 const PORT = <number>config.get('PORT') || 7102;
 const app: Express = express();
@@ -34,6 +35,7 @@ const initServer = () => {
 
 	// use the created routes to
 	app.use('/api/v1/messages', msgRouter);
+	app.use('/api/v1/channels', channelRoutes);
 	app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
 		res.status(err.status || 500);
 		res.send({
