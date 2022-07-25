@@ -1,14 +1,14 @@
 import crypto from 'crypto';
 import { promisify } from 'util';
 import S3 from 'aws-sdk/clients/s3';
-import config from 'config';
+// import config from 'config';
 
 const randomBytes = promisify(crypto.randomBytes);
 
-const bucketName = <string>config.get('BUCKET_NAME');
-const region = <string>config.get('REGION');
-const accessKeyId = <string>config.get('ACCESS_KEY_ID');
-const secretAccessKey = <string>config.get('SECRET_ACCESS_KEY');
+const region = <string>process.env.REGION;
+const bucketName = <string>process.env.BUCKET_NAME;
+const accessKeyId = <string>process.env.ACCESS_KEY_ID;
+const secretAccessKey = <string>process.env.SECRET_ACCESS_KEY;
 
 const s3: S3 = new S3({
 	region,
